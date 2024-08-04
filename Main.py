@@ -105,13 +105,13 @@ def escolha(opcao):
         print(imc(Altura, Peso))
         voltar_menu()
     if opcao == 2:
-        voltar_menu()
         exercicios(Frequencia, Idade)
+        voltar_menu()
     if opcao == 3:
         macronutrientes(Peso)
         voltar_menu()
     if opcao == 4:
-        print("\nDicas de exercícios para melhorar a sua saúde:\n\n1 - Caminhada\n2 - Corrida\n3 - Natação\n4 - Musculação\n5 - Pilates\n6 - Yoga\n7 - Dança\n8 - Bike\n9 - Crossfit\n10 - Treino Funcional\n11 - Lutas\n12 - Esportes em grupo\n13 - Outros\n")
+        dicas_exercicios()
         voltar_menu()
 
 def macronutrientes(Peso):
@@ -147,6 +147,21 @@ def voltar_menu():
         except ValueError:
             print("\nEntrada inválida. Por favor, digite 1 ou 2.")
 
+def dicas_exercicios():
+    while True:
+        escolha = input("Você deseja receber dicas de exercicios para serem feitos na rua (1) ou em casa (2)?\n")
+
+        if escolha == '1':
+            exercicios_rua()
+        elif escolha == '2':
+            exercicios_casa()
+        else:
+            print("Opção inválida. Por favor, digite 1, 2.")
+
+def exercicios_rua():
+    print("\nDicas de exercícios para serem feitos na rua:\n1 - Caminhada\n2 - Corrida\n3 - Pular corda\n4 - Alongamento\n5 - Exercícios de fortalecimento muscular\n")
+def exercicios_casa():
+    print("\nDicas de exercícios para serem feitos em casa:\n1 - Alongamento\n2 - Exercícios de fortalecimento muscular\n3 - Yoga\n4 - Pilates\n5 - Dança\n")
 
 Altura = altura()
 Peso = peso()
