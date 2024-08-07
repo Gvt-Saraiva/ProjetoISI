@@ -160,12 +160,13 @@ def dicas_exercicios():
 
 def exercicios_rua():
     print("\nDicas de exercícios para serem feitos na rua:\n1 - Caminhada\n2 - Corrida\n3 - Pular corda\n4 - Alongamento\n5 - Exercícios de fortalecimento muscular\n")
+    voltar_menu()
 def exercicios_casa():
     print("\nDicas de exercícios para serem feitos em casa:\n1 - Alongamento\n2 - Exercícios de fortalecimento muscular\n3 - Yoga\n4 - Pilates\n5 - Dança\n")
+    voltar_menu()
 
 Altura = altura()
 Peso = peso()
 Idade = idade()
 Frequencia = frequencia()
 menu()
-
