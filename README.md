@@ -21,11 +21,21 @@ O usuário fornece os dados de peso e idade e o programa calcula a quantidade de
 ### 4. Dicas para Melhorar a Saúde
 O programa oferece dicas práticas e conselhos para melhorar a saúde e o bem-estar geral, como atividades e exercícios físicos que podem ser praticados.
 
+### 5. Login
+
+A funcionalidade consiste em pedir pra o usuário digitar um nome de usuário e uma senha, e então ele cria um dicionário com as informações, e coloca-o em uma lista. Ela também é responsável por checar, quando o usuário tenta fazer um login, se o usuário existe, e se existir, que a senha seja a definida pelo usuário.
+
+## Módulos do projeto
+
+O projeto é dividido basicamente entre o `main` que é responsável pelo start e fincionamento geral do programa, que faz chamadas de funções do arquivo `funcoes.py`, onde foram colocadas todas as funções necessárias para a utilização do programa, além do arquivo `cálculos.py`, onde ficam as duas funções responsáveis por fazer cálculos matemáticos. Por fim, temos o arquivo `login`, onde se encontra todo o código responsável por pedir, criar e verificar o login do usuário. 
+
 ## Requisitos/Bibliotecas
 
 - Python 3.x
 - Biblioteca `json` (inclusa no Python)
+  Foi utilizada para armazenar as informações de login fornecidas pelo usuário.
 - OS
+    Foi utilizada para o comando `clear`, que serve para limpar o terminal sempre que uma função é chamada, para manter o ambiente um pouco mais limpo para o usuário.
 
 
 
