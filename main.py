@@ -1,11 +1,9 @@
 from funcoes import altura, peso, idade, frequencia, voltar_menu, dicas_exercicios
 from calculos import imc, calcular_calorias
 from login import registrar_usuario, login_usuario
+from imprimir import imprimir
+import time 
 import os
-
-print("\n====================================")
-print("        BEM-VINDO AO PISIFITNESS")
-print("====================================\n")
 
 def menu():
     """
@@ -25,7 +23,7 @@ def menu():
             else:
                 print("\nOpção inválida. Por favor, digite um número entre 1 e 4.")
         except ValueError:
-            print("\nEntrada inválida. Por favor, digite um número inteiro válido.")
+            print("\nEntrada inválida. Por favor, digite um número inteiro.")
 
 def escolha(opcao):
     
@@ -45,7 +43,7 @@ def escolha(opcao):
                              "1 - Perder peso\n"
                              "2 - Manter o peso\n"
                              "3 - Ganhar peso\n\n"))
-        calcular_calorias(objetivo, peso())
+        print(calcular_calorias(objetivo, peso()))
         voltar_menu()
     elif opcao == 4:
         dicas_exercicios()
@@ -91,4 +89,8 @@ def main():
             print("Opção inválida. Por favor, digite 1, 2 ou 3.")
 
 if __name__ == "__main__":
+    print(imprimir())
+    time.sleep(2)
     main()
+
+

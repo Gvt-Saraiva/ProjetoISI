@@ -5,7 +5,7 @@ def altura():
     Solicita ao usuário que informe sua altura em metros e valida o valor informado.
     A altura deve estar entre 1.2 e 2.7 metros.
     """
-    os.system('clear')
+
     while True:
         try:
             valor_altura = float(input("Digite a sua altura em metros: "))
@@ -21,7 +21,7 @@ def peso():
     Solicita ao usuário que informe seu peso em kg e valida o valor informado.
     O peso deve estar entre 15 e 725 kg.
     """
-    os.system('clear')
+    
     while True:
         try:
             valor_peso = float(input("Digite o peso em kg: "))
@@ -39,7 +39,7 @@ def validar_idade(idade):
     param idade: Idade do usuário
     return: True se a idade estiver na faixa válida, caso contrário, imprime uma mensagem e retorna False.
     """
-    os.system('clear')
+  
     if idade < 10:
         print("\nVocê é muito novo para utilizar o aplicativo! Busque um profissional de saúde para informações adequadas!")
     elif idade > 85:
@@ -52,7 +52,7 @@ def idade():
     Solicita ao usuário que informe sua idade e valida o valor informado.
     Oferece a opção de inserir uma nova idade ou encerrar o programa.
     """
-    os.system('clear')
+
     while True:
         try:
             valor_idade = int(input("Digite a sua idade: "))
@@ -74,7 +74,7 @@ def validar_frequencia(frequencia):
     frequencia: Frequência de atividades físicas do usuário
     return: True se a frequência estiver entre 1 e 4, caso contrário, imprime uma mensagem e retorna False.
     """
-    os.system('clear')
+    
     if 1 <= frequencia <= 4:
         return True
     else:
@@ -85,7 +85,7 @@ def frequencia():
     """
     Solicita ao usuário que informe com que frequência pratica atividades físicas e valida o valor informado.
     """
-    os.system('clear')
+   
     while True:
         try:
             valor_frequencia = int(input("\nCom qual frequência você pratica atividades físicas?\n"
@@ -101,7 +101,7 @@ def voltar_menu():
     """
     Oferece ao usuário a opção de voltar ao menu principal ou encerrar o programa.
     """
-    os.system('clear')
+    
     while True:
         try:
             escolha = input("\nDeseja voltar ao menu principal (1) ou fechar o programa (2)? \n")
@@ -118,7 +118,7 @@ def dicas_exercicios():
     """
     Oferece ao usuário a opção de receber dicas de exercícios para serem feitos na rua ou em casa.
     """
-    os.system('clear')
+    
     while True:
         escolha = input("Você deseja receber dicas de exercícios para serem feitos na rua (1) ou em casa (2)?\n")
         if escolha == '1':
@@ -132,7 +132,7 @@ def exercicios_rua():
     """
     Fornece dicas de exercícios que podem ser realizados ao ar livre.
     """
-    os.system('clear')
+   
     print("\nDicas de exercícios para serem feitos na rua:\n"
           "1 - Caminhada\n"
           "2 - Corrida\n"
@@ -145,7 +145,7 @@ def exercicios_casa():
     """
     Fornece dicas de exercícios que podem ser realizados em casa.
     """
-    os.system('clear')
+   
     print("\nDicas de exercícios para serem feitos em casa:\n"
           "1 - Alongamento\n"
           "2 - Exercícios de fortalecimento muscular\n"

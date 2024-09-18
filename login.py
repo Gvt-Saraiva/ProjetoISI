@@ -1,5 +1,6 @@
 import json
 import os
+from imprimir import imprimir_cadastro
 
 ARQUIVO_DADOS = os.path.join("dados", "usuarios.json")
 
@@ -8,7 +9,7 @@ def carregar_usuarios():
     Carrega os dados dos usuários do arquivo JSON.
     """
     if os.path.exists(ARQUIVO_DADOS):
-        with open(ARQUIVO_DADOS, 'r') as arquivo:
+        with open(ARQUIVO_DADOS, 'r', encoding="utf-8") as arquivo:
             return json.load(arquivo)
     return []
 
@@ -17,13 +18,14 @@ def salvar_usuarios(usuarios_lista):
     Salva os dados dos usuários no arquivo JSON.
     """
 
-    with open(ARQUIVO_DADOS, 'w') as arquivo:
-        json.dump(usuarios_lista, arquivo, indent=4)
+    with open(ARQUIVO_DADOS, 'w', encoding="utf-8") as arquivo:
+        json.dump(usuarios_lista, arquivo, indent=1)
 
 def registrar_usuario():
     """
     Registra um novo usuário, solicitando nome de usuário e senha.
     """
+    print(imprimir_cadastro())
     try:
         usuarios = carregar_usuarios()
     except:
@@ -51,7 +53,6 @@ def login_usuario():
     Realiza o login do usuário, solicitando nome de usuário e senha.
     """
     usuarios = carregar_usuarios()
-    print(usuarios)
     
     nome_usuario = input("Digite o nome de usuário: ")
     senha = input("Digite a senha: ")
@@ -62,5 +63,7 @@ def login_usuario():
                 print("Login bem-sucedido!")
                 return True
 
-    print("Nome de usuário ou senha incorretos.")
+    print("Nenhum usuário encontrado. Tente novamente.")
     return False
+
+
