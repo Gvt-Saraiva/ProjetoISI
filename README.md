@@ -39,8 +39,10 @@ O projeto é dividido basicamente entre o `main` que é responsável pelo start 
 
 ## Versão 3.0
 
-- Atualizado o sistema de cadastro. Agora é possível mudar a senha e deletar uma conta, utilizando o seu login e senha.
-- Sempre que uma conta nova é criada, é pedido ao usuário um objetivo, entre ganhar, perder e manter o peso.
+- Melhorado o sistema de cadastro:
+  Agora é possível redefinir a senha utilizando o login e a senha atual.
+  Também é possível deletar uma conta existente, também utilizando o login e a senha atual do usuário.
+- Agora, sempre que uma conta nova é criada, é pedido ao usuário um objetivo, entre ganhar, perder e manter o peso.
 - Agora você pode armazenar o seu IMC para poder vê-lo posteriormente.
 - Agora você ganha pontuação baseado na sua melhoria tendo em vista o seu IMC. Caso a diferença entre o IMC atual e o que havia sido guardado seja condizente com o seu objetivo, você obtém 10 pontos. Caso se mantenha o mesmo, você receberá uma outra pontuação.
 - Adicionado um sistema de recompensas, onde se pode retirar prêmios baseados em um sistema de compras com os pontos obtidos com o seu progresso pessoal.
