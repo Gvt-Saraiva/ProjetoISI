@@ -29,12 +29,14 @@ def menu():
 def escolha(opcao):
     if opcao == 1:
             os.system('clear')
-            print(imc(altura(), peso()))
+            imc(altura(), peso())
             voltar_menu()
+
     elif opcao == 2:
             os.system('clear')
             exercicios(frequencia(), idade())
             voltar_menu()
+            
     elif opcao == 3:
         os.system('clear')
         while True:

@@ -21,6 +21,35 @@ def calcular_calorias(objetivo, peso):
             f"{carboidratos:.2f}g de carboidratos\n"
             f"{gorduras:.2f}g de gorduras, totalizando {calorias:.2f} calorias\n")
 
+def pontuacao(diferenca_imc, objetivo):
+    """
+    Calcula a pontuação do usuário com base na diferença do IMC e no objetivo escolhido.
+    
+    objetivo:
+    1 - Aumentar o IMC
+    2 - Diminuir o IMC
+    3 - Manter o IMC
+    """
+    if objetivo == 1:
+        if diferenca_imc > 0:
+            return 10
+        elif -0.3 <= diferenca_imc <= 0.3:
+            return 5
+        else:
+            return 0
+    elif objetivo == 2: 
+        if diferenca_imc < 0:
+            return 10
+        elif -0.3 <= diferenca_imc <= 0.3:
+            return 5
+        else:
+            return 0
+    elif objetivo == 3: 
+        if -0.3 <= diferenca_imc <= 0.3:
+            return 10
+        else:
+            return 0
+
 def imc(altura, peso):
     imc = peso / (altura * altura)
     if imc < 18.5:
@@ -50,38 +79,10 @@ def imc(altura, peso):
             print("Seu IMC foi salvo! Parabéns por se cuidar!") 
         else:
             diferenca_imc = imc - imc_anterior
-            pontos = pontuacao(diferenca_imc, get_objetivo())
+            pontos = pontuacao(diferenca_imc, 1)
+            
             somar_pontos(pontos)
             salvar_imc(get_nome_usuario_logado(), imc)
+            
             print(f"Você ganhou {pontos} pontos.")
-    else:   
-        return
 
-def pontuacao(diferenca_imc, objetivo):
-    """
-    Calcula a pontuação do usuário com base na diferença do IMC e no objetivo escolhido.
-    
-    objetivo:
-    1 - Aumentar o IMC
-    2 - Diminuir o IMC
-    3 - Manter o IMC
-    """
-    if objetivo == 1:
-        if diferenca_imc > 0:
-            return 10
-        elif -0.3 <= diferenca_imc <= 0.3:
-            return 5
-        else:
-            return 0
-    elif objetivo == 2: 
-        if diferenca_imc < 0:
-            return 10
-        elif -0.3 <= diferenca_imc <= 0.3:
-            return 5
-        else:
-            return 0
-    elif objetivo == 3: 
-        if -0.3 <= diferenca_imc <= 0.3:
-            return 10
-        else:
-            return 0

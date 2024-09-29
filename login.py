@@ -14,6 +14,7 @@ def carregar_usuarios():
 def salvar_usuarios(usuarios_list):
     with open(ARQUIVO_DADOS, 'w', encoding="utf-8") as arquivo:
         json.dump(usuarios_list, arquivo, indent=1)
+    
 
 def registrar_usuario():
     print(imprimir_cadastro())
@@ -27,7 +28,7 @@ def registrar_usuario():
             break   
     senha = input("Digite a senha: ").strip()
     while True:
-        objetivo_atual = input("Qual seu objetivo?\n1 - Perder peso\n2 - ganhar peso\n3 - manter peso\n")
+        objetivo_atual = input("Qual seu objetivo?\n1 - Ganhar peso\n2 - perder peso\n3 - manter peso\n")
         if(int(objetivo_atual) < 1 or int(objetivo_atual) > 3):
             print("Opção inválida. Por favor, digite 1, 2 ou 3.")
         else:
@@ -113,4 +114,8 @@ def get_objetivo():
 
     for usuario in usuarios:
         if usuario["nome_usuario"] == usuario_logado:
-            return usuario.get("objetivo")
+            objetivo = usuario['objetivo']
+            return int(objetivo)
+
+        
+

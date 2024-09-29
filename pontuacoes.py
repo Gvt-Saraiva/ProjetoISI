@@ -13,20 +13,31 @@ def saber_pontos():
             return int(usuario.get("pontuacao", 0))
     return 0
 
-def somar_pontos(pontos):
+def somar_pontos(pontos) -> str:
     """
     Soma os pontos ao usuário logado. Se a pontuação for None, inicializa como 0.
     """
+    if pontos is None:
+        pontos = 0  
+
     usuarios = carregar_usuarios()
     for usuario in usuarios:
         if usuario["nome_usuario"] == get_nome_usuario_logado():
-            # Pegue a pontuação atual ou 0 se for None
-            pontos_usuario = int(usuario.get("pontuacao", 0))
-            pontos_usuario += pontos
-            usuario["pontuacao"] = pontos_usuario  # Atualiza a pontuação do usuário
+            
+            pontos_usuario = int(usuario.get("pontuacao", 0))  
+            pontos_usuario += pontos 
+            usuario["pontuacao"] = pontos_usuario  
             salvar_usuarios(usuarios)
             return 'Pontos somados com sucesso!'
+    
     return 'Usuário não encontrado.'
+
+
+
+
+
+
+
 
 def descontar_pontos(custo):
     """
