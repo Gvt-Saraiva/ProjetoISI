@@ -1,11 +1,10 @@
 import os
+import json
+from login import get_nome_usuario_logado, carregar_usuarios, salvar_usuarios
+from pontuacoes import saber_pontos, descontar_pontos
+from imprimir import print_premios
 
 def altura():
-    """
-    Solicita ao usuário que informe sua altura em metros e valida o valor informado.
-    A altura deve estar entre 1.2 e 2.7 metros.
-    """
-
     while True:
         try:
             valor_altura = float(input("Digite a sua altura em metros: "))
@@ -17,11 +16,6 @@ def altura():
             print("\nEntrada inválida. Digite um número válido para a altura.")
 
 def peso():
-    """
-    Solicita ao usuário que informe seu peso em kg e valida o valor informado.
-    O peso deve estar entre 15 e 725 kg.
-    """
-    
     while True:
         try:
             valor_peso = float(input("Digite o peso em kg: "))
@@ -33,13 +27,6 @@ def peso():
             print("\nEntrada inválida. Digite um número válido para o peso.")
 
 def validar_idade(idade):
-    """
-    Valida a idade do usuário e fornece recomendações baseadas na faixa etária.
-    
-    param idade: Idade do usuário
-    return: True se a idade estiver na faixa válida, caso contrário, imprime uma mensagem e retorna False.
-    """
-  
     if idade < 10:
         print("\nVocê é muito novo para utilizar o aplicativo! Busque um profissional de saúde para informações adequadas!")
     elif idade > 85:
@@ -48,11 +35,6 @@ def validar_idade(idade):
         return True
 
 def idade():
-    """
-    Solicita ao usuário que informe sua idade e valida o valor informado.
-    Oferece a opção de inserir uma nova idade ou encerrar o programa.
-    """
-
     while True:
         try:
             valor_idade = int(input("Digite a sua idade: "))
@@ -60,7 +42,7 @@ def idade():
                 return valor_idade
         except ValueError:
             print("\nPor favor, digite um número inteiro válido para a idade.")
-        
+
         escolha_saida = input("\nDeseja inserir uma nova idade (1) ou encerrar o programa (2)? ")
         if escolha_saida == '2':
             exit()
@@ -68,13 +50,6 @@ def idade():
             print("\nOpção inválida. Por favor, digite 1 para continuar ou 2 para sair.")
 
 def validar_frequencia(frequencia):
-    """
-    Valida a frequência de atividades físicas do usuário.
-    
-    frequencia: Frequência de atividades físicas do usuário
-    return: True se a frequência estiver entre 1 e 4, caso contrário, imprime uma mensagem e retorna False.
-    """
-    
     if 1 <= frequencia <= 4:
         return True
     else:
@@ -82,10 +57,6 @@ def validar_frequencia(frequencia):
         return False
 
 def frequencia():
-    """
-    Solicita ao usuário que informe com que frequência pratica atividades físicas e valida o valor informado.
-    """
-   
     while True:
         try:
             valor_frequencia = int(input("\nCom qual frequência você pratica atividades físicas?\n"
@@ -98,15 +69,11 @@ def frequencia():
             print("\nPor favor, digite um número inteiro válido.\n")
 
 def voltar_menu():
-    """
-    Oferece ao usuário a opção de voltar ao menu principal ou encerrar o programa.
-    """
-    
     while True:
         try:
             escolha = input("\nDeseja voltar ao menu principal (1) ou fechar o programa (2)? \n")
             if escolha == '1':
-                return  # Retorna ao menu principal
+                return  
             elif escolha == '2':
                 exit()
             else:
@@ -115,10 +82,6 @@ def voltar_menu():
             print("\nEntrada inválida. Por favor, digite 1 ou 2.")
 
 def dicas_exercicios():
-    """
-    Oferece ao usuário a opção de receber dicas de exercícios para serem feitos na rua ou em casa.
-    """
-    
     while True:
         escolha = input("Você deseja receber dicas de exercícios para serem feitos na rua (1) ou em casa (2)?\n")
         if escolha == '1':
@@ -129,10 +92,6 @@ def dicas_exercicios():
             print("Opção inválida. Por favor, digite 1 ou 2.")
 
 def exercicios_rua():
-    """
-    Fornece dicas de exercícios que podem ser realizados ao ar livre.
-    """
-   
     print("\nDicas de exercícios para serem feitos na rua:\n"
           "1 - Caminhada\n"
           "2 - Corrida\n"
@@ -141,15 +100,70 @@ def exercicios_rua():
           "5 - Exercícios de fortalecimento muscular\n")
     voltar_menu()
 
+def exercicios(f, idade):
+    if idade > 10 and idade < 17:
+        if f in (1, 2):
+            print("\nSegundo a OMS, você deve praticar atividades físicas por no mínimo 1 hora por dia, 3 vezes na semana.")
+        else:
+            print("\nContinue assim, você está no caminho certo!")
+    elif 18 <= idade < 65:
+        if f in (1, 2):
+            print("\nBusque alternativas para se exercitar e mantenha sua saúde em dia!")
+        else:
+            print("\nContinue assim, você está no caminho certo!")
+    elif idade >= 65:
+        print("\nPessoas com sua idade devem fazer atividades de fortalecimento muscular e equilíbrio.")
+    print("\nSe desejar dicas de exercícios, acesse a opção 4 no menu principal.")
+
 def exercicios_casa():
-    """
-    Fornece dicas de exercícios que podem ser realizados em casa.
-    """
-   
     print("\nDicas de exercícios para serem feitos em casa:\n"
           "1 - Alongamento\n"
           "2 - Exercícios de fortalecimento muscular\n"
           "3 - Yoga\n"
           "4 - Pilates\n"
           "5 - Dança\n")
+    voltar_menu()
+
+def salvar_imc(usuario_logado, imc):
+    usuarios = carregar_usuarios()
+    for usuario in usuarios:
+        if usuario["nome_usuario"] == usuario_logado:
+            usuario["imc_atual"] = imc
+            salvar_usuarios(usuarios)
+            print("Seu IMC foi atualizado!")
+
+def lista_premios():
+    print("Você possui %d pontos.\n" % saber_pontos())
+    print(print_premios())
+
+    while True:
+        try:
+            retirar_premio = int(input("Deseja resgatar um prêmio?\n1 - Sim\n2 - Não\n"))
+            if retirar_premio in (1, 2):
+                break
+            else:
+                print("Valor inválido, escolha entre 1 e 2.")
+        except ValueError:
+            print("Entrada inválida. Por favor, insira um número entre 1 e 2.")
+
+    if retirar_premio == 1:
+        processar_resgate_premio()
+
+def processar_resgate_premio():
+    os.system('clear')
+    print("Você possui %d pontos.\n" % saber_pontos())
+    print(print_premios())
+
+    while True:
+        try:
+            escolha_premio = int(input("Digite o número do prêmio que deseja resgatar: "))
+            if 1 <= escolha_premio <= 4:
+                break
+            else:
+                print("Valor inválido, escolha entre 1 e 4.")
+        except ValueError:
+            print("Entrada inválida. Por favor, insira um número entre 1 e 4.")
+
+    premios = {1: 20, 2: 35, 3: 15, 4: 50}
+    print(descontar_pontos(premios[escolha_premio]))
     voltar_menu()

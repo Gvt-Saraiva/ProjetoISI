@@ -1,0 +1,51 @@
+[
+ {
+  "nome_usuario": "teste1",
+  "senha": "teste1",
+  "imc_atual": 25.0,
+  "objetivo": "1",
+  "pontuacao": 0.0
+ },
+ {
+  "nome_usuario": "teste2",
+  "senha": "teste2",
+  "imc_atual": null,
+  "objetivo": "3",
+  "pontuacao": 0.0
+ },
+ {
+  "nome_usuario": "guilherme",
+  "senha": "guilherme",
+  "imc_atual": null,
+  "objetivo": "1",
+  "pontuacao": 0.0
+ },
+ {
+  "nome_usuario": "gv",
+  "senha": "gv1",
+  "imc_atual": null,
+  "objetivo": "3",
+  "pontuacao": 0.0
+ },
+ {
+  "nome_usuario": "teste3",
+  "senha": "teste3",
+  "imc_atual": 26.234567901234566,
+  "objetivo": "1",
+  "pontuacao": 0.0
+ },
+ {
+  "nome_usuario": "ge",
+  "senha": "ge",
+  "imc_atual": 30,
+  "objetivo": "1",
+  "pontuacao": 0.0
+ },
+ {
+  "nome_usuario": "gg",
+  "senha": "gg",
+  "imc_atual": 14.298378563870855,
+  "objetivo": "2",
+  "pontuacao": 0.0
+ }
+]

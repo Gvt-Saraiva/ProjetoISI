@@ -1,10 +1,8 @@
+from funcoes import salvar_imc
+from login import get_nome_usuario_logado, get_imc_atual, get_objetivo
+from pontuacoes import somar_pontos
+
 def calcular_calorias(objetivo, peso):
-    """
-    Calcula a quantidade ideal de macronutrientes e calorias com base no objetivo e no peso.
-    
-    param objetivo: O objetivo do usuário (1 - Perder peso, 2 - Manter o peso, 3 - Ganhar peso)
-    param peso: O peso do usuário em kg
-    """
     if objetivo == 1:
         x, y = 2, 3
     elif objetivo == 2:
@@ -24,23 +22,66 @@ def calcular_calorias(objetivo, peso):
             f"{gorduras:.2f}g de gorduras, totalizando {calorias:.2f} calorias\n")
 
 def imc(altura, peso):
-    """
-    Calcula o IMC (Índice de Massa Corporal) e retorna a classificação.
-    
-    param altura: Altura do usuário em metros
-    param peso: Peso do usuário em kg
-    return: Mensagem com a classificação do IMC
-    """
     imc = peso / (altura * altura)
     if imc < 18.5:
-        return f"Seu IMC é: {imc:.2f}. Você está abaixo do peso ideal."
+        print(f"Seu IMC é: {imc:.2f}. Você está abaixo do peso ideal.")
     elif 18.5 <= imc < 24.9:
-        return f"Seu IMC é: {imc:.2f}. Você está no peso ideal."
+        print(f"Seu IMC é: {imc:.2f}. Você está no peso ideal.")
     elif 25 <= imc < 29.9:
-        return f"Seu IMC é: {imc:.2f}. Você está com sobrepeso."
+        print(f"Seu IMC é: {imc:.2f}. Você está com sobrepeso.")
     elif 30 <= imc < 34.9:  
-        return f"Seu IMC é: {imc:.2f}. Você está com obesidade grau 1."
+        print(f"Seu IMC é: {imc:.2f}. Você está com obesidade grau 1.")
     elif 35 <= imc < 39.9:
-        return f"Seu IMC é: {imc:.2f}. Você está com obesidade grau 2."
+        print(f"Seu IMC é: {imc:.2f}. Você está com obesidade grau 2.")
     else:
-        return f"Seu IMC é: {imc:.2f}. Você está com obesidade grau 3."
+        print(f"Seu IMC é: {imc:.2f}. Você está com obesidade grau 3.")
+
+    while True:
+        escolha_salvar = input("Deseja salvar o resultado do seu IMC?\n1 - Sim\n2 - Não\n")
+        if escolha_salvar == '1' or escolha_salvar == '2':
+            break
+        else:
+            print("Valor inválido, escolha entre 1 e 2.")
+
+    if escolha_salvar == '1':
+        imc_anterior = get_imc_atual()
+        if imc_anterior is None:
+            salvar_imc(get_nome_usuario_logado(), imc)
+            print("Seu IMC foi salvo! Parabéns por se cuidar!") 
+        else:
+            diferenca_imc = imc - imc_anterior
+            pontos = pontuacao(diferenca_imc, get_objetivo())
+            somar_pontos(pontos)
+            salvar_imc(get_nome_usuario_logado(), imc)
+            print(f"Você ganhou {pontos} pontos.")
+    else:   
+        return
+
+def pontuacao(diferenca_imc, objetivo):
+    """
+    Calcula a pontuação do usuário com base na diferença do IMC e no objetivo escolhido.
+    
+    objetivo:
+    1 - Aumentar o IMC
+    2 - Diminuir o IMC
+    3 - Manter o IMC
+    """
+    if objetivo == 1:
+        if diferenca_imc > 0:
+            return 10
+        elif -0.3 <= diferenca_imc <= 0.3:
+            return 5
+        else:
+            return 0
+    elif objetivo == 2: 
+        if diferenca_imc < 0:
+            return 10
+        elif -0.3 <= diferenca_imc <= 0.3:
+            return 5
+        else:
+            return 0
+    elif objetivo == 3: 
+        if -0.3 <= diferenca_imc <= 0.3:
+            return 10
+        else:
+            return 0
